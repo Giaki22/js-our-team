@@ -34,6 +34,7 @@ const teamMembers = [
 
 // DOM OBJS //
 const container = document.querySelector(".team-container");
+const button = document.getElementById("addMemberButton");
 
 // FUNCTIONS //
 function printTeam(){
@@ -49,6 +50,23 @@ function printTeam(){
             </div>`
         container.innerHTML += card;
     }
-}
+};
+function addTeamMember(){
+    const name = document.getElementById("name");
+    const role = document.getElementById("role");
+    const img = document.getElementById("image");
+    teamMembers.push({img : img.value, name: name.value, role : role.value});
+    const card =`<div class="team-card">
+                <div class="card-image">
+                    <img src="${teamMembers[teamMembers.length-1].img}" alt="Wayne Barnett"/>
+                </div>
+                <div class="card-text">
+                  <h3>${teamMembers[teamMembers.length-1].name}</h3>
+                  <p>${teamMembers[teamMembers.length-1].role}</p>
+                </div>
+            </div>`
+    container.innerHTML += card;
+};
 // MAIN //
 printTeam();
+button.addEventListener("click", addTeamMember);
