@@ -35,6 +35,9 @@ const teamMembers = [
 // DOM OBJS //
 const container = document.querySelector(".team-container");
 const button = document.getElementById("addMemberButton");
+const uName = document.getElementById("name");
+const uRole = document.getElementById("role");
+const uImg = document.getElementById("image");
 
 // FUNCTIONS //
 function printTeam(){
@@ -52,20 +55,24 @@ function printTeam(){
     }
 };
 function addTeamMember(){
-    const name = document.getElementById("name");
-    const role = document.getElementById("role");
-    const img = document.getElementById("image");
-    teamMembers.push({img : img.value, name: name.value, role : role.value});
-    const card =`<div class="team-card">
+    if (!(uImg.value == "" || uName.value == "" || uRole.value == "")){
+        teamMembers.push({img : uImg.value, name: uName.value, role : uRole.value});
+        const card =`<div class="team-card">
                 <div class="card-image">
-                    <img src="${teamMembers[teamMembers.length-1].img}" alt="Wayne Barnett"/>
+                    <img src="${teamMembers[teamMembers.length-1].img}" alt="Error"/>
                 </div>
                 <div class="card-text">
                   <h3>${teamMembers[teamMembers.length-1].name}</h3>
                   <p>${teamMembers[teamMembers.length-1].role}</p>
                 </div>
-            </div>`
+            </div>`;
     container.innerHTML += card;
+    uName.value = "";
+    uRole.value = "";
+    uImg.value = "";
+    } else {
+        alert("Riempi tutti i campi");
+    };
 };
 // MAIN //
 printTeam();
